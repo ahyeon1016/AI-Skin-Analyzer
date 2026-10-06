@@ -35,7 +35,6 @@ public class MemberRepositoryImpl implements MemberRepository {
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getNickname());
 			System.out.println(">> 바인딩 완료: login_id=" + member.getLogin_id() + 
-							   ", password=" + member.getPassword() + 
 							   ", nickname=" + member.getNickname());
 
 			pstmt.executeUpdate();
@@ -81,7 +80,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
 			pstmt.setString(1, login_id);
 			pstmt.setString(2, password);
-			System.out.println(">> 바인딩 완료: login_id=" + login_id + ", password=" + password);
+			System.out.println(">> 바인딩 완료: login_id=" + login_id);
 
 			rs = pstmt.executeQuery();
 			System.out.println(">> SELECT 실행 완료");

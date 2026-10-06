@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.regex.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,15 @@ public class Api_controller {
         byte[] imageBytes = photo.getBytes();
 
         // Vertex 설정
-        String projectId = "gen-lang-client-0567056623";
+        // 실제 Project ID는 src/main/resources/secret-config.txt의 PROJECT_ID에서 불러옴 (Git 제외)
+        Properties secretConfig = new Properties();
+        try (InputStream input = Api_controller.class.getClassLoader().getResourceAsStream("secret-config.txt")) {
+            if (input == null) {
+                throw new IOException("secret-config.txt 파일을 찾을 수 없습니다.");
+            }
+            secretConfig.load(input);
+        }
+        String projectId = secretConfig.getProperty("PROJECT_ID");
         String location = "us-central1";
         String modelName = "gemini-2.5-pro";
 

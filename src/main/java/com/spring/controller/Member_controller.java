@@ -62,7 +62,6 @@ public class Member_controller {
 		String password = (String)request.getParameter("password");
 		
 		System.out.println(login_id);
-		System.out.println(password);
 		
 		HttpSession session = request.getSession();
 		memberDTO member = memberService.memberRead(login_id, password);
