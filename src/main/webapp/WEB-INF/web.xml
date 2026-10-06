@@ -1,0 +1,36 @@
+<web-app>
+  <display-name>Archetype Created Web Application</display-name> 
+    <!-- Root Context (공유되는 객체의 저장소)를 설정하는 파일의 위치를 지정 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring/root-context.xml
+        </param-value>
+    </context-param>
+    <!-- Listner:자동실행 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+  
+      <!-- Servlet Context(각각 개별적으로 유저에게 지급되는 저장소)를 설정하는 파일의 위치 -->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <multipart-config>
+		    <location>/tmp</location>
+		    <max-file-size>5242880</max-file-size>
+		    <max-request-size>10485760</max-request-size>
+		    <file-size-threshold>0</file-size-threshold>
+	  </multipart-config>
+    </servlet>   
+    
+    <servlet-mapping> <!-- 모든 요청에 대해서 작동하도록 설정 -->
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>  
+    
+</web-app>
